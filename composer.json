@@ -40,5 +40,12 @@
         "lint": [
             "@php vendor/bin/phpstan analyse"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Readycash\\EmailTemplate\\EmailServiceProvider"
+            ]
+        }
     }
 }
