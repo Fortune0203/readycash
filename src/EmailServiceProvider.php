@@ -27,9 +27,9 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../login/index.html' => $index = resource_path('views/email-template/login.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../credit mail/index.html' => $credit_mail = resource_path('views/email-template/dedit.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../welcome mail/index.html' => $welcome = resource_path('views/email-template/welcome.blade.php')], 'readycash.template');
-        $this->publishes([__DIR__ . '/../agent mail/index.html' => $welcome = resource_path('views/email-template/logininfo.blade.php')], 'readycash.template');
 
-        
+        $this->publishes($this->getCacFilesForPublishing(), 'readycash.template');
+
         $this->commands([FormatTemplate::class]);
     }
 
@@ -40,4 +40,19 @@ class EmailServiceProvider extends ServiceProvider
             'template'
         );
     }
+
+    protected function getCacFilesForPublishing()
+    {
+        $sourcePath = __DIR__ . '/../cac';
+        $destinationPath = resource_path('views/email-template/cac');
+        
+        $files = [];
+        foreach (glob($sourcePath . '/*') as $file) {
+            $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
+            $files[$file] = $destinationPath . '/cac-' . $fileName . '.blade.php';
+        }
+
+        return $files;
+    }
+
 }
