@@ -29,7 +29,7 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../welcome mail/index.html' => $welcome = resource_path('views/email-template/welcome.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../agent mail/index.html' => $welcome = resource_path('views/email-template/logininfo.blade.php')], 'readycash.template');
 
-
+        
         $this->commands([FormatTemplate::class]);
     }
 
