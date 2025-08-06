@@ -1,0 +1,2 @@
+vendor/bin/testbench vendor:publish --force
+vendor/bin/testbench format:email-template --path=views\email-template --zip

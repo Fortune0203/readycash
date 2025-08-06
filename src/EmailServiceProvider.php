@@ -28,7 +28,11 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../credit mail/index.html' => $credit_mail = resource_path('views/email-template/dedit.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../welcome mail/index.html' => $welcome = resource_path('views/email-template/welcome.blade.php')], 'readycash.template');
 
+        $this->publishes([__DIR__ . '/../password Reset/PasswordReset.html' => resource_path('views/email-template/password-reset.blade.php')], 'readycash.template');
+        $this->publishes([__DIR__ . '/../pin Reset/PinReset.html' => resource_path('views/email-template/pin-reset.blade.php')], 'readycash.template');
+
         $this->publishes($this->getCacFilesForPublishing(), 'readycash.template');
+        $this->publishes($this->getSecurityResetFilesForPublishing(), 'readycash.template');
 
         $this->commands([FormatTemplate::class]);
     }
@@ -55,4 +59,17 @@ class EmailServiceProvider extends ServiceProvider
         return $files;
     }
 
+    protected function getSecurityResetFilesForPublishing()
+    {
+        $sourcePath = __DIR__ . '/../Security Question';
+        $destinationPath = resource_path('views/email-template/security');
+        
+        $files = [];
+        foreach (glob($sourcePath . '/*') as $file) {
+            $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
+            $files[$file] = $destinationPath . '/security-question-' . $fileName . '.blade.php';
+        }
+
+        return $files;
+    }
 }
