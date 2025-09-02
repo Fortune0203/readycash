@@ -35,6 +35,8 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes($this->getSecurityResetFilesForPublishing(), 'readycash.template');
 
         $this->publishes([__DIR__ . '/../dynamic-template/dynamic-template.html' => $dynamic = resource_path('views/email-template/dynamic.blade.php')], 'readycash.template');
+        $this->publishes([__DIR__ . '/../pos mail/index.html' => $pos = resource_path('views/email-template/pos-request.blade.php')], 'readycash.template');
+
         $this->commands([FormatTemplate::class]);
     }
 
