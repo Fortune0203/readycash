@@ -66,7 +66,7 @@ class EmailServiceProvider extends ServiceProvider
 
     protected function getCooperativeFilesForPublishing()
     {
-        $sourcePath = __DIR__ . '/../cac';
+        $sourcePath = __DIR__ . '/../cooperative';
         $destinationPath = resource_path('views/email-template/cooperative');
         
         $files = [];
