@@ -34,6 +34,8 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes($this->getCacFilesForPublishing(), 'readycash.template');
         $this->publishes($this->getSecurityResetFilesForPublishing(), 'readycash.template');
 
+        $this->publishes($this->getCooperativeFilesForPublishing(), 'cooperative.template');
+
         $this->publishes([__DIR__ . '/../dynamic-template/dynamic-template.html' => $dynamic = resource_path('views/email-template/dynamic.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../pos mail/index.html' => $pos = resource_path('views/email-template/pos-request.blade.php')], 'readycash.template');
 
@@ -57,6 +59,20 @@ class EmailServiceProvider extends ServiceProvider
         foreach (glob($sourcePath . '/*') as $file) {
             $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
             $files[$file] = $destinationPath . '/cac-' . $fileName . '.blade.php';
+        }
+
+        return $files;
+    }
+
+    protected function getCooperativeFilesForPublishing()
+    {
+        $sourcePath = __DIR__ . '/../cac';
+        $destinationPath = resource_path('views/email-template/cooperative');
+        
+        $files = [];
+        foreach (glob($sourcePath . '/*') as $file) {
+            $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
+            $files[$file] = $destinationPath . '/coop-' . $fileName . '.blade.php';
         }
 
         return $files;
