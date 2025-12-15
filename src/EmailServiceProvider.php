@@ -72,7 +72,7 @@ class EmailServiceProvider extends ServiceProvider
         $files = [];
         foreach (glob($sourcePath . '/*') as $file) {
             $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
-            $files[$file] = $destinationPath . '/coop-' . $fileName . '.blade.php';
+            $files[$file] = $destinationPath . "/$fileName.blade.php";
         }
 
         return $files;
