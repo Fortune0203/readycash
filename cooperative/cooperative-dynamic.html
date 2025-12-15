@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f4;padding:20px 0;">
+    <tr>
+      <td align="center">
+
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;">
+
+          <!-- Banner Image -->
+          <tr>
+            <td>
+              <img
+                src="{banner_image_url}"
+                alt="Notification Banner"
+                width="600"
+                style="display:block;width:100%;height:auto;"
+              >
+            </td>
+          </tr>
+
+          <!-- Main Content -->
+          <tr>
+            <td style="padding:20px 30px;font-size:16px;line-height:1.6;color:#333;">
+              <p>Dear <strong>{name}</strong>,</p>
+              <p>{message}</p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:20px 30px;border-top:1px solid #ddd;font-size:12px;color:#777;">
+
+              <!-- Logo + Social Icons -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:15px 0;">
+                <tr>
+                  <td align="left" style="vertical-align:middle;">
+                    <img
+                      src="{baseurl}/storage/email_assets/parkwaylogo.png"
+                      alt="Parkway Wallet"
+                      width="150"
+                      style="display:block;height:auto;"
+                    >
+                  </td>
+
+                  <td align="right" style="vertical-align:middle;">
+                    <a href="#" style="margin:0 5px;display:inline-block;">
+                      <img src="{baseurl}/storage/email_assets/x.png" width="20" height="20" alt="X">
+                    </a>
+                    <a href="#" style="margin:0 5px;display:inline-block;">
+                      <img src="{baseurl}/storage/email_assets/facebook.png" width="20" height="20" alt="Facebook">
+                    </a>
+                    <a href="#" style="margin:0 5px;display:inline-block;">
+                      <img src="{baseurl}/storage/email_assets/instagram.png" width="20" height="20" alt="Instagram">
+                    </a>
+                    <a href="#" style="margin:0 5px;display:inline-block;">
+                      <img src="{baseurl}/storage/email_assets/linkedin.png" width="20" height="20" alt="LinkedIn">
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <table cellpadding="0" cellspacing="0" border="0" align="center" style="font-size:11px;line-height:1.4;">
+                <tr>
+                  <td align="center">Copyright © {year} Parkway Projects. All rights reserved.</td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top:5px;">
+                    295 Herbert Macaulay Way, Yaba, Lagos State.
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top:5px;">
+                    Please send any feedback to
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top:5px;">
+                    <span style="color:#F9956B;">crm@parkway.ng</span>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
