@@ -33,10 +33,13 @@ class EmailServiceProvider extends ServiceProvider
 
         $this->publishes($this->getCacFilesForPublishing(), 'readycash.template');
         $this->publishes($this->getSecurityResetFilesForPublishing(), 'readycash.template');
+        $this->publishes($this->getAccountLockFilesForPublishing(), 'readycash.template');
 
         $this->publishes($this->getCooperativeFilesForPublishing(), 'cooperative.template');
 
         $this->publishes([__DIR__ . '/../dynamic-template/dynamic-template.html' => $dynamic = resource_path('views/email-template/dynamic.blade.php')], 'readycash.template');
+        $this->publishes([__DIR__ . '/../readycash/readycash.onboard.welcome.html' => $welcome = resource_path('views/email-template/readycash.onboard-welcome.blade.php')], 'readycash.template');
+
         $this->publishes([__DIR__ . '/../pos mail/index.html' => $pos = resource_path('views/email-template/pos-request.blade.php')], 'readycash.template');
 
         $this->commands([FormatTemplate::class]);
@@ -87,6 +90,20 @@ class EmailServiceProvider extends ServiceProvider
         foreach (glob($sourcePath . '/*') as $file) {
             $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
             $files[$file] = $destinationPath . '/security-question-' . $fileName . '.blade.php';
+        }
+
+        return $files;
+    }
+
+    protected function getAccountLockFilesForPublishing()
+    {
+        $sourcePath = __DIR__ . '/../account lock';
+        $destinationPath = resource_path('views/email-template/account_lock');
+        
+        $files = [];
+        foreach (glob($sourcePath . '/*') as $file) {
+            $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
+            $files[$file] = $destinationPath . '/account_lock' . $fileName . '.blade.php';
         }
 
         return $files;
