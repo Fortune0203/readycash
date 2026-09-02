@@ -36,6 +36,8 @@ class EmailServiceProvider extends ServiceProvider
         $this->publishes($this->getAccountLockFilesForPublishing(), 'readycash.template');
 
         $this->publishes($this->getCooperativeFilesForPublishing(), 'cooperative.template');
+        
+        $this->publishes($this->getOnboardingAndTierUpgradeFilesForPublishing(), 'readycash.template');
 
         $this->publishes([__DIR__ . '/../dynamic-template/dynamic-template.html' => $dynamic = resource_path('views/email-template/dynamic.blade.php')], 'readycash.template');
         $this->publishes([__DIR__ . '/../readycash/readycash.onboard.welcome.html' => $welcome = resource_path('views/email-template/readycash.onboard-welcome.blade.php')], 'readycash.template');
@@ -104,6 +106,20 @@ class EmailServiceProvider extends ServiceProvider
         foreach (glob($sourcePath . '/*') as $file) {
             $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
             $files[$file] = $destinationPath . '/account_lock' . $fileName . '.blade.php';
+        }
+
+        return $files;
+    }
+
+    protected function getOnboardingAndTierUpgradeFilesForPublishing()
+    {
+        $sourcePath = __DIR__ . '/../onboarding';
+        $destinationPath = resource_path('views/email-template/onboarding');
+        
+        $files = [];
+        foreach (glob($sourcePath . '/*') as $file) {
+            $fileName = strtolower(pathinfo($file, PATHINFO_FILENAME));
+            $files[$file] = $destinationPath . "/$fileName.blade.php";
         }
 
         return $files;
